@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: fct_channel_daily
+    description: >
+      Daily spend, platform-reported results, and first-party order revenue by channel.
+      Compares what the ad platforms claim (platform_roas) with what the store actually
+      recorded via UTM attribution (attributed_roas).
+    columns:
+      - name: channel_day_id
+        data_tests: [unique, not_null]
+      - name: channel
+        data_tests:
+          - accepted_values:
+              values: ['meta', 'google', 'email', 'organic', 'other']
+      - name: platform_roas
+        description: Platform-reported conversion value / spend.
+      - name: attributed_roas
+        description: First-party revenue attributed by UTM source / spend.
+      - name: cac
+        description: Spend / new customers acquired on that channel.
+
+  - name: fct_blended_daily
+    description: Business-level daily totals across all channels.
+    columns:
+      - name: date_day
+        data_tests: [unique, not_null]
+      - name: mer
+        description: Marketing efficiency ratio = total revenue / total ad spend.
+      - name: blended_cac
+        description: Total ad spend / all new customers (paid and unpaid).
+
+  - name: fct_cohort_ltv
+    description: Cohort LTV curves by first-order month and first-touch acquisition channel.
+    columns:
+      - name: cohort_key
+        data_tests: [unique, not_null]
+      - name: cumulative_ltv_per_customer
+        description: Cumulative revenue to date divided by the number of customers in the cohort.
