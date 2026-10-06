@@ -1,0 +1,13 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: "{{ env_var('RAW_SCHEMA', 'raw') }}"
+    description: Raw tables loaded by the Python ingestion layer. Never edited by hand.
+    tables:
+      - name: meta_ads_daily
+        description: Meta Insights API, campaign level, one row per campaign per day.
+      - name: google_ads_daily
+        description: Google Ads API (GAQL), campaign level, one row per campaign per day.
+      - name: orders
+        description: E-commerce order export with the UTM source captured at checkout.
