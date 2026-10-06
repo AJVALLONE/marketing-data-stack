@@ -1,0 +1,5 @@
+# Extra packages for pulling real ad data and loading to BigQuery
+-r requirements.txt
+google-ads>=25.0
+google-cloud-bigquery>=3.25
+dbt-bigquery>=1.9,<1.10

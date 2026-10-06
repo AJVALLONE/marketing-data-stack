@@ -1,0 +1,17 @@
+# Secrets - never commit these
+.env
+*.json.key
+service-account*.json
+
+# Local data and build artifacts
+data/
+dbt/target/
+dbt/logs/
+dbt/dbt_packages/
+logs/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+dbt/.user.yml
