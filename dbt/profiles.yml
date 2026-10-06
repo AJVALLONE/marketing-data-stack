@@ -1,0 +1,16 @@
+# Contains no secrets: BigQuery auth uses `gcloud auth application-default login`.
+marketing_data_stack:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: "{{ env_var('DUCKDB_PATH', 'data/marketing.duckdb') }}"
+      schema: analytics
+      threads: 4
+    prod:
+      type: bigquery
+      method: oauth
+      project: "{{ env_var('GCP_PROJECT', 'set-gcp-project') }}"
+      dataset: analytics
+      location: "{{ env_var('BQ_LOCATION', 'US') }}"
+      threads: 4

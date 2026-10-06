@@ -1,0 +1,19 @@
+name: marketing_data_stack
+version: "1.0.0"
+config-version: 2
+profile: marketing_data_stack
+
+model-paths: ["models"]
+macro-paths: ["macros"]
+test-paths: ["tests"]
+target-path: "target"
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  marketing_data_stack:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table
